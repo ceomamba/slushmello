@@ -13,29 +13,18 @@ client.on('ready', () => {
     client.user.setActivity('over www.djmamba.tk', { type:'WATCHING' });
 });
 
-fs.readdir("./src/commands/", (err, files) => {
-
-    if(err) console.log(err);
-    let jsfile = files.filter(f => f.split(".").pop() === "js");
-    if(jsfile.length <= 0){
-      console.log("Couldn't find commands.");
-      return;
-    }
-  
-    jsfile.forEach((f, i) =>{
-      let props = require(`./src/commands/${f}`);
-      console.log(`${f} loaded!`);
-      client.commands.set(props.help.name, props);
-    });
-  });
-
 client.on("message", async message => {
     let messageArray = message.content.split(" ");
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
     let prefix = PREFIX;
 
-    let commandfile = client.commands.get(cmd.slice(prefix.length));
-    if(commandfile) commandfile.run(client,message,args);
+    if(message.content === prefix + 'site') {
+        let embed = new Discord.RichEmbed()
+            .setColor("PURPLE")
+            .setAuthor(message.author.username, message.author.displayAvatarURL)
+            .setTitle('http://www.djmamba.tk');
+        message.channel.send(embed);
+    }
 });
 client.login(TOKEN);
