@@ -7,7 +7,7 @@ const PREFIX = '!';
 
 client.on('ready', () => {
     console.log(chalk.red('You have sucesfully launched ' + client.user.username + ' in your terminal'));
-    client.user.setActivity('over www.djmamba.tk', { type:'WATCHING' });
+    client.user.setActivity('over neurotism', { type:'WATCHING' });
 });
 
 client.on("message", async message => {
